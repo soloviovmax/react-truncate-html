@@ -18,6 +18,7 @@ class Truncate extends Component {
         lines: PropTypes.number,
         portrait: PropTypes.number,
         breakWord: PropTypes.bool,
+        onTruncate: PropTypes.func,
     };
 
     static defaultProps = {
@@ -120,6 +121,11 @@ class Truncate extends Component {
         this.createProp(this.refs.paragraph);
 
         if (this.isNotCorrect()) {
+
+            if (this.props.onTruncate) {
+                this.props.onTruncate();
+            }
+
             if (this.refs.paragraph.childNodes.length && this.refs.paragraph.childNodes.length > 1) {
                 this.handleChilds(this.refs.paragraph);
             } else if (this.refs.paragraph.childNodes.length && this.refs.paragraph.childNodes.length === 1 && this.refs.paragraph.childNodes[0].nodeType === 3) {
