@@ -170,6 +170,10 @@ var Truncate = function (_Component) {
             this.createProp(this.refs.paragraph);
 
             if (this.isNotCorrect()) {
+                if (this.props.onTruncate) {
+                    this.props.onTruncate();
+                }
+
                 if (this.refs.paragraph.childNodes.length && this.refs.paragraph.childNodes.length > 1) {
                     this.handleChilds(this.refs.paragraph);
                 } else if (this.refs.paragraph.childNodes.length && this.refs.paragraph.childNodes.length === 1 && this.refs.paragraph.childNodes[0].nodeType === 3) {
@@ -344,7 +348,8 @@ Truncate.propTypes = {
     responsive: _propTypes2.default.bool,
     lines: _propTypes2.default.number,
     portrait: _propTypes2.default.number,
-    breakWord: _propTypes2.default.bool
+    breakWord: _propTypes2.default.bool,
+    onTruncate: _propTypes2.default.func
 };
 Truncate.defaultProps = {
     ellipsis: '…',
@@ -355,4 +360,3 @@ Truncate.defaultProps = {
     breakWord: true
 };
 exports.default = Truncate;
-
